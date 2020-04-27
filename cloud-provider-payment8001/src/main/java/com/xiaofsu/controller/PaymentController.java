@@ -37,7 +37,7 @@ public class PaymentController {
 
 
     @PostMapping("create")
-    public CommonResult insert(Payment payment){
+    public CommonResult insert(@RequestBody Payment payment){
         Payment insert = paymentService.insert(payment);
         log.info("插入的结果为："+insert);
         if(null != insert) {
