@@ -22,7 +22,13 @@ eureka:
     fetch-registry: true
     # 服务注册地址
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+      defaultZone: http://eureka7001.com:7001/eureka
+      #defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
   instance:
     instance-id: payment8001
     prefer-ip-address: true
+    # Erueka 服务端在收到最后一次心跳的等待时间，默认为90s，超时剔除服务。
+    lease-expiration-duration-in-seconds: 2
+    # 客户端向服务端发送心跳的时间间隔，默认为30s，
+    lease-renewal-interval-in-seconds: 1
