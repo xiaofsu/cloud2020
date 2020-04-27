@@ -47,9 +47,9 @@ public class PaymentController {
         Payment insert = paymentService.insert(payment);
         log.info("插入的结果为："+insert);
         if(null != insert) {
-            return new CommonResult(200, "插入数据成功！"+serverPort,insert);
+            return new CommonResult(200, "插入数据成功！",insert);
         }else{
-            return new CommonResult(500,"插入数据失败!"+serverPort,null);
+            return new CommonResult(500,"插入数据失败!",null);
         }
     }
 }
