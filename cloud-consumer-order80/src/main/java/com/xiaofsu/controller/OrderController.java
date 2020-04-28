@@ -3,8 +3,10 @@ package com.xiaofsu.controller;
 import com.xiaofsu.entity.CommonResult;
 import com.xiaofsu.entity.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -39,5 +41,17 @@ public class OrderController {
     public CommonResult<Payment> get(@PathVariable("id") Long id){
         return restTemplate.getForObject(PAYMENT_URL+"/payment/get/"+id,CommonResult.class);
     }
+
+    @GetMapping("/consumer/payment/getForEntity/{id}")
+    public CommonResult<Payment> get2(@PathVariable("id") Long id){
+        ResponseEntity<CommonResult> forEntity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
+        if (forEntity.getStatusCode().is2xxSuccessful()){
+            log.info(forEntity.getStatusCode()+"\t"+forEntity.getHeaders());
+            return forEntity.getBody();
+        }else {
+            return new CommonResult<>(500,"调用失败！",null);
+        }
+    }
+
 
 }
