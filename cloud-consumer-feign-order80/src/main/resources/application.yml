@@ -1,0 +1,21 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    # 表示是否将自身 注册到eurekaServer，默认为True
+    register-with-eureka: false
+    # 服务注册地址
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+ribbon:
+  # 建立连接所用的时间，适用于网络状况正常的情况下，两端需要的时间
+  ReadTimeout: 5000
+  # 建立连接后从服务器读取到可用资源所需的时间
+  connectTimeout: 5000
+
+logging:
+  level:
+    # feign 日志用什么级别监控哪个接口
+    com.xiaofsu.service.PaymentFeignService: debug
