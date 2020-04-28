@@ -16,7 +16,7 @@ public class ApplicationContextConfig {
     //如果服务的提供者挂掉了之后，并不会自动剔除，而是尝试使用。
 
     @Bean
-    @LoadBalanced //赋予负载均衡能力
+    //@LoadBalanced //赋予负载均衡能力
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
